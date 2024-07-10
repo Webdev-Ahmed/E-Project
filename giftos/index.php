@@ -1,5 +1,5 @@
 
-  <?php include("header.php"); echo $_SESSION['email'] ?>
+  <?php include("header.php");?>
 
     <section class="slider_section">
       <div class="slider_container">
