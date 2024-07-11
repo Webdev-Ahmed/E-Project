@@ -35,7 +35,7 @@
               >Product Category</label
             >
             <input
-              type="number"
+              type="text"
               class="form-control"
               id="productCategoryInput"
               name="p_category"

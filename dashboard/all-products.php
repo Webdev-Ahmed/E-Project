@@ -52,18 +52,18 @@ $res = mysqli_query($conn, $query);
                     $quantityBadgeClr = "primary";
                   }
                   
-                  if($data['quantity'] <= 20) {
+                  if($data['quantity'] < 20) {
                     $quantityBadge = "Medium";
                     $quantityBadgeClr = "secondary";
                   }
                   
-                  if($data['quantity'] <= 10) {
+                  if($data['quantity'] < 10) {
                     $quantityBadge = "Low";
                     $quantityBadgeClr = "pink";
                     $quantityBadgeClr = "warning";
                   }
                   
-                  if($data['quantity'] <= 10) {
+                  if($data['quantity'] < 5) {
                     $quantityBadge = "Critical";
                     $quantityBadgeClr = "danger";
                   }
@@ -92,7 +92,7 @@ $res = mysqli_query($conn, $query);
                         <h6 class='fw-semibold mb-0 fs-4'>Rs. $data[price]</h6>
                       </td>
                       <td>
-                      <a class='btn btn-sm btn-secondary' href='product/edit_product_backend.php?id=$data[id]'>Edit</a>
+                      <a class='btn btn-sm btn-secondary' href='edit-product.php?id=$data[id]'>Edit</a>
                         <a class='btn btn-sm btn-danger' href='product/delete_product_backend.php?id=$data[id]'>Delete</a>
                       </td>
                     </tr>

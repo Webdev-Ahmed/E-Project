@@ -4,7 +4,7 @@ include("../conn.php");
 
 if(isset($_POST['add-product-submit'])) {
   $name = $_POST['p_name'];
-  $description = $_POST['p_description'];
+  $description = $data['description'];
   $price = $_POST['p_price'];
   $quantity = $_POST['p_quantity'];
   $category = $_POST['p_category'];
