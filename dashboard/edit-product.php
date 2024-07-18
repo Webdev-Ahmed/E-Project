@@ -30,7 +30,7 @@ $data = mysqli_fetch_assoc($res);
           <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Add new product</h5>
             <div class="card-body">
-              <form action="./product/add_product_backend.php" method="POST" enctype="multipart/form-data">
+              <form action="./product/update_product_backend.php?id=<?php echo $data['id'] ?>" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="productNameInput" class="form-label"
                     >Product Name</label
@@ -54,9 +54,7 @@ $data = mysqli_fetch_assoc($res);
                     id="productDescriptionInput"
                     name="p_description"
                     rows="4"
-                  >
-                    <?php echo $data['description'] ?>
-                  </textarea>
+                  ><?php echo rtrim(ltrim($data['description'])) ?></textarea>
                 </div>
                 <div class="mb-3">
                   <label for="productCategoryInput" class="form-label"
@@ -105,7 +103,8 @@ $data = mysqli_fetch_assoc($res);
                     name="p_image"
                   />
                 </div>
-                <button type="submit" name="add-product-submit" class="btn btn-primary">
+                <input type="text" hidden value="<?php echo $data['image'] ?>" name="old_image_name">
+                <button type="submit" name="update-product-submit" class="btn btn-primary">
                   Update product
                 </button>
               </form>

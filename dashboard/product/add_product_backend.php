@@ -70,7 +70,7 @@ if(isset($_POST['add-product-submit'])) {
     } else {
       echo "
         <script>
-          alert('The file ". basename( $_FILES["p_image"]["name"]). " has been uploaded');
+          alert('Product has been Added');
           window.location.href = '../all-products.php';
         </script>
       ";
