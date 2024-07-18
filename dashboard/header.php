@@ -138,9 +138,21 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-login"></i>
+                    <i class="ti ti-logout"></i>
                   </span>
                   <span class="hide-menu">Login</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="./index.php"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="ti ti-login"></i>
+                  </span>
+                  <span class="hide-menu">Log out</span>
                 </a>
               </li>
               <li class="nav-small-cap">
