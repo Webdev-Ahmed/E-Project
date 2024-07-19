@@ -16,16 +16,6 @@ if(isset($_POST['login-submit'])) {
     return false;
   }
 
-  if(strlen($password) <= 8) {
-    echo "
-      <script>
-        alert('Password should be atleast 8 characters long!');
-        window.location.href = '../index.php';
-      </script>
-    ";
-    return false;
-  }
-
   $user_query = "SELECT * FROM users WHERE email = '$email'";
   $user = mysqli_query($conn, $user_query);
 
@@ -62,6 +52,7 @@ if(isset($_POST['login-submit'])) {
   }
 
   session_start();
+  $_SESSION['id'] = $user_data['id'];
   $_SESSION['first_name'] = $user_data['first_name'];
   $_SESSION['last_name'] = $user_data['last_name'];
   $_SESSION['email'] = $user_data['email'];

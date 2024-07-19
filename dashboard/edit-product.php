@@ -28,7 +28,7 @@ $data = mysqli_fetch_assoc($res);
       <div class="col-md-8 d-flex align-items-stretch">
         <div class="card w-100">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Add new product</h5>
+            <h5 class="card-title fw-semibold mb-4">Edit product</h5>
             <div class="card-body">
               <form action="./product/update_product_backend.php?id=<?php echo $data['id'] ?>" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">

@@ -1,3 +1,5 @@
+<?php include('auth/session_check.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,7 +65,7 @@
                   <span class="hide-menu">Dashboard</span>
                 </a>
               </li>
-              <li class="nav-small-cap">
+              <!-- <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">UI COMPONENTS</span>
               </li>
@@ -126,35 +128,7 @@
                   </span>
                   <span class="hide-menu">Typography</span>
                 </a>
-              </li>
-              <li class="nav-small-cap">
-                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                <span class="hide-menu">AUTH</span>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
-                  href="./index.php"
-                  aria-expanded="false"
-                >
-                  <span>
-                    <i class="ti ti-logout"></i>
-                  </span>
-                  <span class="hide-menu">Login</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
-                  href="./index.php"
-                  aria-expanded="false"
-                >
-                  <span>
-                    <i class="ti ti-login"></i>
-                  </span>
-                  <span class="hide-menu">Log out</span>
-                </a>
-              </li>
+              </li> -->
               <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">PRODUCT OPTIONS</span>
@@ -183,6 +157,60 @@
                   <span class="hide-menu">All products</span>
                 </a>
               </li>
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">USERS OPTION</span>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="./all-users.php"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="ti ti-users"></i>
+                  </span>
+                  <span class="hide-menu">All users</span>
+                </a>
+              </li>
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">AUTH</span>
+              </li>
+              <?php
+              
+              if(empty($_SESSION['email'])) {
+                echo "
+                  <li class='sidebar-item'>
+                    <a
+                      class='sidebar-link'
+                      href='./index.php'
+                      aria-expanded='false'
+                    >
+                      <span>
+                        <i class='ti ti-logout'></i>
+                      </span>
+                      <span class='hide-menu'>Login</span>
+                    </a>
+                  </li>
+                ";
+              } else {
+                echo "
+                  <li class='sidebar-item'>
+                    <a
+                      class='sidebar-link'
+                      href='auth/logout_backend.php'
+                      aria-expanded='false'
+                    >
+                      <span>
+                        <i class='ti ti-login'></i>
+                      </span>
+                      <span class='hide-menu'>Log out</span>
+                    </a>
+                  </li>
+                ";
+              }
+              ?>
               <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">EXTRA</span>
@@ -233,12 +261,6 @@
                   <i class="ti ti-menu-2"></i>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                  <i class="ti ti-bell-ringing"></i>
-                  <div class="notification bg-primary rounded-circle"></div>
-                </a>
-              </li>
             </ul>
             <div
               class="navbar-collapse justify-content-end px-0"
@@ -247,27 +269,17 @@
               <ul
                 class="navbar-nav flex-row ms-auto align-items-center justify-content-end"
               >
-                <a
-                  href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/"
-                  target="_blank"
-                  class="btn btn-primary"
-                  >Download Free</a
-                >
                 <li class="nav-item dropdown">
                   <a
-                    class="nav-link nav-icon-hover"
+                    class="nav-link"
                     href="javascript:void(0)"
                     id="drop2"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
+                    style="display: flex; align-items: center; gap: 6px"
                   >
-                    <img
-                      src="./assets/images/profile/user-1.jpg"
-                      alt=""
-                      width="35"
-                      height="35"
-                      class="rounded-circle"
-                    />
+                    <i class="ti ti-user" style="font-size: 18px; margin-bottom: 10px"></i>
+                    <h6 class="nav-link" style="font-size: 16px; padding: 0 !important;"><?php echo $_SESSION['first_name'] ?></h6>
                   </a>
                   <div
                     class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
@@ -275,28 +287,14 @@
                   >
                     <div class="message-body">
                       <a
-                        href="javascript:void(0)"
+                        href="account-info.php"
                         class="d-flex align-items-center gap-2 dropdown-item"
                       >
                         <i class="ti ti-user fs-6"></i>
                         <p class="mb-0 fs-3">My Profile</p>
                       </a>
                       <a
-                        href="javascript:void(0)"
-                        class="d-flex align-items-center gap-2 dropdown-item"
-                      >
-                        <i class="ti ti-mail fs-6"></i>
-                        <p class="mb-0 fs-3">My Account</p>
-                      </a>
-                      <a
-                        href="javascript:void(0)"
-                        class="d-flex align-items-center gap-2 dropdown-item"
-                      >
-                        <i class="ti ti-list-check fs-6"></i>
-                        <p class="mb-0 fs-3">My Task</p>
-                      </a>
-                      <a
-                        href="./authentication-login.php"
+                        href="auth/logout_backend.php"
                         class="btn btn-outline-primary mx-3 mt-2 d-block"
                         >Logout</a
                       >

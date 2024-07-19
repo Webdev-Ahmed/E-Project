@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+if(isset($_SESSION['email'])) {
+  echo "<script>alert('Already logged in!'); window.location.href = './dashboard.php'; </script>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
