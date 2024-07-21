@@ -69,7 +69,7 @@ $res = mysqli_query($conn, $query);
                         <h6 class='fw-normal mb-0 fs-4'>$formatedDate</h6>
                       </td>
                       <td class='border-bottom-0'>
-                        <a class='btn btn-danger' href='order/cancel_order_backend.php?id=$data[id]'>Cancel Order</a>
+                        <a class='btn btn-danger' href='order/cancel_order_backend.php?id=$data[id]'>Reject Order</a>
                       </td>
                     </tr>
                   ";

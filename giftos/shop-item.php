@@ -14,7 +14,7 @@ $data = mysqli_fetch_assoc(mysqli_query($conn, $select_query));
   <div class="container container-bg">
     <div class="row">
       <div class="col-6 p-3">
-        <img src="public/uploads/<?php echo $data['image'] ?>" style="width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center; border-radius: 5px;" alt="<?php echo $data['name'] ?>">
+        <img src="public/uploads/<?php echo $data['image'] ?>" style="width: 100%; aspect-ratio: 1; object-fit: contain; object-position: center; border-radius: 5px;" alt="<?php echo $data['name'] ?>">
       </div>
       <div class="col-6 p-3">
         <form action="cart/add_to_card_backend.php?p_id=<?php echo $data['id'] ?>" method="POST">

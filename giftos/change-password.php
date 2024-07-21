@@ -65,7 +65,7 @@
         <form method="POST">
           <div>
             <label>Password:</label>
-            <input type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required />
+            <input type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d){8,}$" required />
           </div>
           <div>
             <label>Confirm password:</label>

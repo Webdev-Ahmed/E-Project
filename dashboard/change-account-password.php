@@ -76,6 +76,7 @@ if(isset($_POST['change-password-submit'])) {
               >
               <input
                 type="password"
+                pattern="^(?=.*[A-Za-z])(?=.*\d){8,}$"
                 class="form-control"
                 id="passwordInput"
                 name="password"

@@ -71,7 +71,7 @@ if(isset($_SESSION['email'])) {
                       <input
                         type="password"
                         name="password"
-                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                        pattern="^(?=.*[A-Za-z])(?=.*\d){8,}$"
                         class="form-control"
                         id="exampleInputPassword1"
                       />

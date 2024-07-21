@@ -2,14 +2,14 @@
 
 include("../conn.php");
 
-if(isset($_POST['add-product-submit'])) {
-  $name = $_POST['p_name'];
-  $description = $_POST['p_description'];
-  $price = $_POST['p_price'];
-  $quantity = $_POST['p_quantity'];
-  $category = $_POST['p_category'];
+if(isset($_POST["add-product-submit"])) {
+  $name = $_POST["p_name"];
+  $description = addslashes($_POST["p_description"]);
+  $price = $_POST["p_price"];
+  $quantity = $_POST["p_quantity"];
+  $category = $_POST["p_category"];
 
-  $img = $_FILES['p_image'];
+  $img = $_FILES["p_image"];
 
   if(empty($name) || empty($description) || empty($price) || empty($quantity) || empty($img) || empty($category)) {
     echo "
@@ -37,17 +37,17 @@ if(isset($_POST['add-product-submit'])) {
     return false;
   }
 
-  if($_FILES['p_image']['size'] > 5_000_000) {
+  if($_FILES["p_image"]["size"] > 10_000_000) {
     echo "
       <script>
-        alert('File size should be less then 5mb');
+        alert('File size should be less then 10mb');
         window.location.href = '../add-product.php';
       </script>
     ";
     return false;
   }
 
-  $query = "INSERT INTO products (name, description, price, quantity, image, category) VALUES ('$name', '$description', '$price', '$quantity', '$img_name', '$category')";
+  $query = "INSERT INTO `products` (`name`, `description`, `price`, `quantity`, `image`, `category`) VALUES ('$name', '$description', '$price', '$quantity', '$img_name', '$category');";
   $res = mysqli_query($conn, $query);
 
   if(!$res) {
@@ -59,7 +59,7 @@ if(isset($_POST['add-product-submit'])) {
     ";
     return false;
   } else {
-    if(!move_uploaded_file($_FILES['p_image']["tmp_name"], $target_dir . $img_name)) {
+    if(!move_uploaded_file($_FILES["p_image"]["tmp_name"], $target_dir . $img_name)) {
       echo "
         <script>
           alert('Your file could not be uploaded!');

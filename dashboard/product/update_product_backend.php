@@ -2,15 +2,15 @@
 
 include('../conn.php');
 
-if(isset($_POST['update-product-submit'])) {
-  $id = $_GET['id'];
-  $name = $_POST['p_name'];
-  $description = $_POST['p_description'];
-  $category = $_POST['p_category'];
-  $price = $_POST['p_price'];
-  $quantity = $_POST['p_quantity'];
+if(isset($_POST["update-product-submit"])) {
+  $id = $_GET["id"];
+  $name = $_POST["p_name"];
+  $description = addslashes($_POST["p_description"]);
+  $category = $_POST["p_category"];
+  $price = $_POST["p_price"];
+  $quantity = $_POST["p_quantity"];
 
-  $img = $_FILES['p_image'];
+  $img = $_FILES["p_image"];
   
   if(empty($name) && empty($description) && empty($price) && empty($quantity)) {
     echo "
@@ -22,8 +22,8 @@ if(isset($_POST['update-product-submit'])) {
     return false;
   };
 
-  if(empty($img['name'])) {
-    $query = "UPDATE products SET name = '$name', description = '$description', category = '$category', price = '$price', quantity = '$quantity' WHERE id = $id";
+  if(empty($img["name"])) {
+    $query = "UPDATE `products` SET `name` = '$name', `description` = '$description', `category` = '$category', `price` = '$price', `quantity` = '$quantity' WHERE `id` = $id";
     $res = mysqli_query($conn, $query);
 
     if(!$res) {
@@ -65,10 +65,10 @@ if(isset($_POST['update-product-submit'])) {
       return false;
     }
   
-    if($_FILES['p_image']['size'] > 5_000_000) {
+    if($_FILES['p_image']['size'] > 10_000_000) {
       echo "
         <script>
-          alert('File size should be less then 5mb');
+          alert('File size should be less then 10mb');
           window.location.href = '../edit-product.php';
         </script>
       ";

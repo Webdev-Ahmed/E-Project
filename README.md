@@ -10,3 +10,10 @@
 
 - **Email**: admin@admin.com
 - **Password**: Admin12345
+
+---
+
+# User account:
+
+- **Email**: user@gmail.com
+- **Password**: User@1234

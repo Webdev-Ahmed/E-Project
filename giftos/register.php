@@ -19,7 +19,7 @@
               <input type="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="email" required placeholder="Email" />
             </div>
             <div>
-              <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" name="pass" required placeholder="Password" />
+              <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d){8,}$" name="pass" required placeholder="Password" />
             </div>
             <div>
               <input type="password" name="cpass" required placeholder="Confirm Password" />

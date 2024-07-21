@@ -106,7 +106,6 @@ $data = mysqli_fetch_assoc($res);
                     class="form-control"
                     id="productImageInput"
                     name="p_image"
-                    required
                   />
                 </div>
                 <input type="text" hidden value="<?php echo $data['image'] ?>" name="old_image_name">

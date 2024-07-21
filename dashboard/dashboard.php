@@ -69,52 +69,73 @@ $topFourProducts = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM products 
               <div class="table-responsive">
                 <table class="table text-nowrap mb-0 align-middle">
                   <thead class="text-dark fs-4">
-                    <tr>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Id</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Order ID</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Quantity</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Price</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">User ID</h6>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php 
-                      foreach($topFiveOrders as $x) {
+                    <?php
+                    
+                      if(!empty($topFiveOrders)) {
                         echo "
                           <tr>
-                            <td class='border-bottom-0'>
-                              <h6 class='fw-semibold mb-0'>$x[id]</h6>
-                            </td>
-                            <td class='border-bottom-0'>
-                              <h6 class='fw-semibold mb-1'>$x[order_id]</h6>
-                            </td>
-                            <td class='border-bottom-0'>
-                              <p class='mb-0 fw-normal'>$x[order_quantity]</p>
-                            </td>
-                            <td class='border-bottom-0'>
-                              <h6 class='fw-semibold mb-0 fs-4'>Rs. $x[order_price]</h6>
-                            </td>
-                            <td class='border-bottom-0'>
-                              <p class='fw-semibold mb-0 fs-4'>$x[user_id]</p>
-                            </td>
+                            <th class='border-bottom-0'>
+                              <h6 class='fw-semibold mb-0'>Id</h6>
+                            </th>
+                            <th class='border-bottom-0'>
+                              <h6 class='fw-semibold mb-0'>Order ID</h6>
+                            </th>
+                            <th class='border-bottom-0'>
+                              <h6 class='fw-semibold mb-0'>Quantity</h6>
+                            </th>
+                            <th class='border-bottom-0'>
+                              <h6 class='fw-semibold mb-0'>Price</h6>
+                            </th>
+                            <th class='border-bottom-0'>
+                              <h6 class='fw-semibold mb-0'>User ID</h6>
+                            </th>
                           </tr>
                         ";
                       }
                     
                     ?>
+                  </thead>
+                  <tbody>
+                    <?php 
+                      if(!empty($topFiveOrders)) {
+                        foreach($topFiveOrders as $x) {
+                          echo "
+                            <tr>
+                              <td class='border-bottom-0'>
+                                <h6 class='fw-semibold mb-0'>$x[id]</h6>
+                              </td>
+                              <td class='border-bottom-0'>
+                                <h6 class='fw-semibold mb-1'>$x[order_id]</h6>
+                              </td>
+                              <td class='border-bottom-0'>
+                                <p class='mb-0 fw-normal'>$x[order_quantity]</p>
+                              </td>
+                              <td class='border-bottom-0'>
+                                <h6 class='fw-semibold mb-0 fs-4'>Rs. $x[order_price]</h6>
+                              </td>
+                              <td class='border-bottom-0'>
+                                <p class='fw-semibold mb-0 fs-4'>$x[user_id]</p>
+                              </td>
+                            </tr>
+                          ";
+                        }
+                      }
+                    ?>
                   </tbody>
                 </table>
-                <a href="orders.php" class="btn btn-primary mt-4">See All</a>
+                <?php 
+
+                  if(!empty($topFiveOrders)) {
+                    echo "
+                      <a href='orders.php' class='btn btn-primary mt-4'>See All</a>
+                    ";
+                  } else {
+                    echo "
+                      <h3 class='text-center mt-2 mb-4'>There are no recent orders!</h3>
+                    ";
+                  }
+
+                ?>
               </div>
             </div>
           </div>
