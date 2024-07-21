@@ -28,9 +28,9 @@ $data = mysqli_fetch_assoc($res);
       <div class="col-md-8 d-flex align-items-stretch">
         <div class="card w-100">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Edit product</h5>
+            <h5 class="card-title fw-semibold mb-4">View Product</h5>
             <div class="card-body">
-              <form action="./product/update_product_backend.php?id=<?php echo $data['id'] ?>" method="POST" enctype="multipart/form-data">
+              <form>
                 <div class="mb-3">
                   <label for="productNameInput" class="form-label"
                     >Product Name</label
@@ -38,9 +38,9 @@ $data = mysqli_fetch_assoc($res);
                   <input
                     type="text"
                     class="form-control"
+                    disabled
                     id="productNameInput"
                     name="p_name"
-                    required
                     value="<?php echo $data['name'] ?>"
                   />
                 </div>
@@ -51,11 +51,11 @@ $data = mysqli_fetch_assoc($res);
                   <textarea
                     type="textarea"
                     class="form-control"
+                    disabled
                     style="resize: none;"
                     id="productDescriptionInput"
                     name="p_description"
                     rows="4"
-                    required
                   ><?php echo rtrim(ltrim($data['description'])) ?></textarea>
                 </div>
                 <div class="mb-3">
@@ -65,9 +65,9 @@ $data = mysqli_fetch_assoc($res);
                   <input
                     type="text"
                     class="form-control"
+                    disabled
                     id="productCategoryInput"
                     name="p_category"
-                    required
                     value="<?php echo $data['category'] ?>"
                   />
                 </div>
@@ -78,9 +78,9 @@ $data = mysqli_fetch_assoc($res);
                   <input
                     type="number"
                     class="form-control"
+                    disabled
                     id="productPriceInput"
                     name="p_price"
-                    required
                     value="<?php echo $data['price'] ?>"
                   />
                 </div>
@@ -91,28 +91,12 @@ $data = mysqli_fetch_assoc($res);
                   <input
                     type="number"
                     class="form-control"
+                    disabled
                     id="productQuantityInput"
                     name="p_quantity"
-                    required
                     value="<?php echo $data['quantity'] ?>"
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="productImageInput" class="form-label"
-                    >Product Image</label
-                  >
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="productImageInput"
-                    name="p_image"
-                    required
-                  />
-                </div>
-                <input type="text" hidden value="<?php echo $data['image'] ?>" name="old_image_name">
-                <button type="submit" name="update-product-submit" class="btn btn-primary">
-                  Update product
-                </button>
               </form>
             </div>
           </div>

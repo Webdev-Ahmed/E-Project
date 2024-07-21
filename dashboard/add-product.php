@@ -15,6 +15,7 @@
               class="form-control"
               id="productNameInput"
               name="p_name"
+              required
             />
           </div>
           <div class="mb-3">
@@ -28,6 +29,7 @@
               id="productDescriptionInput"
               name="p_description"
               rows="4"
+              required
             ></textarea>
           </div>
           <div class="mb-3">
@@ -39,6 +41,7 @@
               class="form-control"
               id="productCategoryInput"
               name="p_category"
+              required
             />
           </div>
           <div class="mb-3">
@@ -50,6 +53,7 @@
               class="form-control"
               id="productPriceInput"
               name="p_price"
+              required
             />
           </div>
           <div class="mb-3">
@@ -61,6 +65,7 @@
               class="form-control"
               id="productQuantityInput"
               name="p_quantity"
+              required
             />
           </div>
           <div class="mb-3">
@@ -72,6 +77,7 @@
               class="form-control"
               id="productImageInput"
               name="p_image"
+              required
             />
           </div>
           <button type="submit" name="add-product-submit" class="btn btn-primary">

@@ -12,14 +12,14 @@
         <div class="col-md-6  col-lg-5 container-bg mx-auto px-3 px-0">
           <form action="auth/register_backend.php" method="POST">
             <div class="d-flex">
-              <input type="text" name="fname" class="mr-2" required placeholder="First Name" />
-              <input type="text" name="lname" class="ml-2" required placeholder="Last Name" />
+              <input type="text" pattern="^[a-zA-Z]+(?:['-][a-zA-Z]+)?$" name="fname" class="mr-2" required placeholder="First Name" />
+              <input type="text" pattern="^[a-zA-Z]+(?:['-][a-zA-Z]+)?$" name="lname" class="ml-2" required placeholder="Last Name" />
             </div>
             <div>
-              <input type="email" name="email" required placeholder="Email" />
+              <input type="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="email" required placeholder="Email" />
             </div>
             <div>
-              <input type="password" name="pass" required placeholder="Password" />
+              <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" name="pass" required placeholder="Password" />
             </div>
             <div>
               <input type="password" name="cpass" required placeholder="Confirm Password" />

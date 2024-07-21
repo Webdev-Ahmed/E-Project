@@ -1,4 +1,16 @@
-<?php include("header.php"); ?>
+<?php 
+
+include("header.php");
+include("conn.php");
+
+$projectCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(first_name) AS all_users FROM users"));
+$totalProducts = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(name) AS all_products FROM products"));
+$totalEarning = mysqli_fetch_assoc(mysqli_query($conn, "SELECT sum(order_price) AS total FROM orders"));
+
+$topFiveOrders = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM orders ORDER BY ordered_at LIMIT 5"), MYSQLI_ASSOC);
+$topFourProducts = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM products ORDER BY created_at LIMIT 4"), MYSQLI_ASSOC);
+
+?>
 
         <div class="container-fluid">
           <!--  Row 1 -->
@@ -6,60 +18,36 @@
             <div class="col-lg-8 d-flex align-items-strech">
               <div class="card w-100">
                 <div class="card-body">
-                  <div
-                    class="d-sm-flex d-block align-items-center justify-content-between mb-9"
-                  >
-                    <div class="mb-3 mb-sm-0">
-                      <h5 class="card-title fw-semibold">Sales Overview</h5>
-                    </div>
-                    <div>
-                      <select class="form-select">
-                        <option value="1">March 2023</option>
-                        <option value="2">April 2023</option>
-                        <option value="3">May 2023</option>
-                        <option value="4">June 2023</option>
-                      </select>
+                  <div class="card-body pb-0">
+                    <h1 class="card-title">Total customers:</h1>
+                    <div class="card-body">
+                      <h1><?php echo $projectCount['all_users'] ?></h1>
                     </div>
                   </div>
-                  <div id="chart"></div>
+                  <div class="card-body">
+                    <h1 class="card-title">Total products:</h1>
+                    <div class="card-body">
+                      <h1><?php echo $totalProducts['all_products'] ?></h1>
+                    </div>
+                  </div>
                 </div>
+               
               </div>
             </div>
             <div class="col-lg-4">
               <div class="row">
                 <div class="col-lg-12">
-                  <!-- Yearly Breakup -->
                   <div class="card overflow-hidden">
                     <div class="card-body p-4">
-                      <h5 class="card-title mb-9 fw-semibold">
-                        Yearly Breakup
-                      </h5>
+                      <h3 class="card-title mb-9 fw-semibold">
+                        Earnings
+                      </h3>
                       <div class="row align-items-center">
                         <div class="col-8">
-                          <h4 class="fw-semibold mb-3">$36,358</h4>
-                          <div class="d-flex align-items-center mb-3">
-                            <span
-                              class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center"
-                            >
-                              <i class="ti ti-arrow-up-left text-success"></i>
-                            </span>
-                            <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                            <p class="fs-3 mb-0">last year</p>
-                          </div>
-                          <div class="d-flex align-items-center">
-                            <div class="me-4">
-                              <span
-                                class="round-8 bg-primary rounded-circle me-2 d-inline-block"
-                              ></span>
-                              <span class="fs-2">2023</span>
-                            </div>
-                            <div>
-                              <span
-                                class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"
-                              ></span>
-                              <span class="fs-2">2023</span>
-                            </div>
-                          </div>
+                          <h5>EarningGoal:</h5>
+                          <h6 style="opacity: .7;" class="fw-normal mb-3">Rs. 1,000,000</h6>
+                          <h5>TotalEarning:</h5>
+                          <h6 style="opacity: .7;" class="fw-normal mb-3">Rs. <?php echo $totalEarning['total'] ?></h6>
                         </div>
                         <div class="col-4">
                           <div class="d-flex justify-content-center">
@@ -69,48 +57,14 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-12">
-                  <!-- Monthly Earnings -->
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="row alig n-items-start">
-                        <div class="col-8">
-                          <h5 class="card-title mb-9 fw-semibold">
-                            Monthly Earnings
-                          </h5>
-                          <h4 class="fw-semibold mb-3">$6,820</h4>
-                          <div class="d-flex align-items-center pb-1">
-                            <span
-                              class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center"
-                            >
-                              <i class="ti ti-arrow-down-right text-danger"></i>
-                            </span>
-                            <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                            <p class="fs-3 mb-0">last year</p>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="d-flex justify-content-end">
-                            <div
-                              class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center"
-                            >
-                              <i class="ti ti-currency-dollar fs-6"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="earning"></div>
-                  </div>
-                </div>
+                </div> 
               </div>
             </div>
           </div>
           <div class="card w-100">
             <div class="card-body p-4">
               <h5 class="card-title fw-semibold mb-4">
-                Recent Transactions
+                Recent Orders
               </h5>
               <div class="table-responsive">
                 <table class="table text-nowrap mb-0 align-middle">
@@ -120,360 +74,152 @@
                         <h6 class="fw-semibold mb-0">Id</h6>
                       </th>
                       <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Assigned</h6>
+                        <h6 class="fw-semibold mb-0">Order ID</h6>
                       </th>
                       <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Name</h6>
+                        <h6 class="fw-semibold mb-0">Quantity</h6>
                       </th>
                       <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Priority</h6>
+                        <h6 class="fw-semibold mb-0">Price</h6>
                       </th>
                       <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Budget</h6>
+                        <h6 class="fw-semibold mb-0">User ID</h6>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">1</h6>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                        <span class="fw-normal">Web Designer</span>
-                      </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">Elite Admin</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <div class="d-flex align-items-center gap-2">
-                          <span
-                            class="badge bg-primary rounded-3 fw-semibold"
-                            >Low</span
-                          >
-                        </div>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">2</h6>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Andrew McDownland</h6>
-                        <span class="fw-normal">Project Manager</span>
-                      </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">Real Homes WP Theme</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <div class="d-flex align-items-center gap-2">
-                          <span
-                            class="badge bg-secondary rounded-3 fw-semibold"
-                            >Medium</span
-                          >
-                        </div>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">$24.5k</h6>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">3</h6>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Christopher Jamil</h6>
-                        <span class="fw-normal">Project Manager</span>
-                      </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">MedicalPro WP Theme</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <div class="d-flex align-items-center gap-2">
-                          <span
-                            class="badge bg-danger rounded-3 fw-semibold"
-                            >High</span
-                          >
-                        </div>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">$12.8k</h6>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">4</h6>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                        <span class="fw-normal">Frontend Engineer</span>
-                      </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">Hosting Press HTML</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <div class="d-flex align-items-center gap-2">
-                          <span
-                            class="badge bg-success rounded-3 fw-semibold"
-                            >Critical</span
-                          >
-                        </div>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                      </td>
-                    </tr>
+                    <?php 
+                      foreach($topFiveOrders as $x) {
+                        echo "
+                          <tr>
+                            <td class='border-bottom-0'>
+                              <h6 class='fw-semibold mb-0'>$x[id]</h6>
+                            </td>
+                            <td class='border-bottom-0'>
+                              <h6 class='fw-semibold mb-1'>$x[order_id]</h6>
+                            </td>
+                            <td class='border-bottom-0'>
+                              <p class='mb-0 fw-normal'>$x[order_quantity]</p>
+                            </td>
+                            <td class='border-bottom-0'>
+                              <h6 class='fw-semibold mb-0 fs-4'>Rs. $x[order_price]</h6>
+                            </td>
+                            <td class='border-bottom-0'>
+                              <p class='fw-semibold mb-0 fs-4'>$x[user_id]</p>
+                            </td>
+                          </tr>
+                        ";
+                      }
+                    
+                    ?>
                   </tbody>
                 </table>
+                <a href="orders.php" class="btn btn-primary mt-4">See All</a>
               </div>
             </div>
           </div>
           <div class="row">
             <h4 class="fw-semibold mb-4">Latest products</h2>
-            <div class="col-sm-6 col-xl-3">
-              <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                  <a href="javascript:void(0)"
-                    ><img
-                      src="./assets/images/products/s4.jpg"
-                      class="card-img-top rounded-0"
-                      alt="..."
-                  /></a>
-                  <a
-                    href="javascript:void(0)"
-                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    data-bs-title="Add To Cart"
-                    ><i class="ti ti-basket fs-4"></i
-                  ></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                  <h6 class="fw-semibold fs-4">Boat Headphone</h6>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <h6 class="fw-semibold fs-4 mb-0">
-                      $50
-                      <span class="ms-2 fw-normal text-muted fs-3"
-                        ><del>$65</del></span
-                      >
-                    </h6>
-                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                    </ul>
+            <?php
+
+              foreach($topFourProducts as $x) {
+                echo "
+                  <div class='col-sm-6 col-xl-3'>
+                    <div class='card overflow-hidden rounded-2'>
+                      <div class='position-relative'>
+                        <a href='item.php?id=$x[id]'
+                          ><img
+                            src='../giftos/public/uploads/$x[image]'
+                            class='card-img-top rounded-0'
+                            height='270'
+                            style='object-fit:cover;'
+                            alt='$x[name]'
+                        /></a>
+                      </div>
+                      <div class='card-body pt-3 p-4'>
+                        <h6 class='fw-semibold fs-4'>$x[name]</h6>
+                        <div
+                          class='d-flex align-items-center justify-content-between'
+                        >
+                          <h6 class='fw-semibold fs-4 mb-0'>
+                            Rs. $x[price]
+                          </h6>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                  <a href="javascript:void(0)"
-                    ><img
-                      src="./assets/images/products/s5.jpg"
-                      class="card-img-top rounded-0"
-                      alt="..."
-                  /></a>
-                  <a
-                    href="javascript:void(0)"
-                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    data-bs-title="Add To Cart"
-                    ><i class="ti ti-basket fs-4"></i
-                  ></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                  <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <h6 class="fw-semibold fs-4 mb-0">
-                      $650
-                      <span class="ms-2 fw-normal text-muted fs-3"
-                        ><del>$900</del></span
-                      >
-                    </h6>
-                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                  <a href="javascript:void(0)"
-                    ><img
-                      src="./assets/images/products/s7.jpg"
-                      class="card-img-top rounded-0"
-                      alt="..."
-                  /></a>
-                  <a
-                    href="javascript:void(0)"
-                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    data-bs-title="Add To Cart"
-                    ><i class="ti ti-basket fs-4"></i
-                  ></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                  <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <h6 class="fw-semibold fs-4 mb-0">
-                      $150
-                      <span class="ms-2 fw-normal text-muted fs-3"
-                        ><del>$200</del></span
-                      >
-                    </h6>
-                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                  <a href="javascript:void(0)"
-                    ><img
-                      src="./assets/images/products/s11.jpg"
-                      class="card-img-top rounded-0"
-                      alt="..."
-                  /></a>
-                  <a
-                    href="javascript:void(0)"
-                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    data-bs-title="Add To Cart"
-                    ><i class="ti ti-basket fs-4"></i
-                  ></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                  <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <h6 class="fw-semibold fs-4 mb-0">
-                      $285
-                      <span class="ms-2 fw-normal text-muted fs-3"
-                        ><del>$345</del></span
-                      >
-                    </h6>
-                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="me-1" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a class="" href="javascript:void(0)"
-                          ><i class="ti ti-star text-warning"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+                ";
+              }
+            
+            ?>
           </div>
         </div>
+      </div>
+    </div>
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/sidebarmenu.js"></script>
+    <script src="./assets/js/app.min.js"></script>
+    <script src="./assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+    <script>
+      totalEarning = <?php echo $totalEarning['total'] ?>;
 
-<?php include("dashboard_footer.php") ?>
+      $(function () {
+        earningGoal = 1000000;
+        console.log(totalEarning);
+
+        var breakup = {
+          color: "#adb5bd",
+          series: [totalEarning, earningGoal],
+          chart: {
+            width: 180,
+            type: "donut",
+            fontFamily: "Plus Jakarta Sans', sans-serif",
+            foreColor: "#adb0bb",
+          },
+          plotOptions: {
+            pie: {
+              startAngle: 0,
+              endAngle: 360,
+              donut: {
+                size: "75%",
+              },
+            },
+          },
+          stroke: {
+            show: false,
+          },
+
+          dataLabels: {
+            enabled: false,
+          },
+
+          legend: {
+            show: false,
+          },
+          colors: ["#5D87FF", "#ecf2ff", "#F9F9FD"],
+
+          responsive: [
+            {
+              breakpoint: 991,
+              options: {
+                chart: {
+                  width: 150,
+                },
+              },
+            },
+          ],
+          tooltip: {
+            theme: "dark",
+            fillSeriesColor: false,
+          },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#breakup"), breakup);
+        chart.render();
+      });
+
+    </script>
+  </body>
+</html>

@@ -22,7 +22,7 @@ $result = mysqli_query($conn, $select_query);
             echo "
               <div class='col-sm-6 col-md-4 col-lg-3'>
                 <div class='box'>
-                  <a href=''>
+                  <a href='shop-item.php?id=$data[id]'>
                     <div class='img-box'>
                       <img src='public/uploads/$data[image]'>
                     </div>

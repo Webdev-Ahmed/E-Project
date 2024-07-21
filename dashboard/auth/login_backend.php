@@ -31,6 +31,16 @@ if(isset($_POST['login-submit'])) {
 
   $user_data = mysqli_fetch_assoc($user);
 
+  if(strlen($password) <= 8) {
+    echo "
+      <script>
+        alert('Password should be atleast 8 characters long!');
+        window.location.href = '../index.php';
+      </script>
+    ";
+    return false;
+  }
+
   if($password !== $user_data['password']) {
     echo "
       <script>

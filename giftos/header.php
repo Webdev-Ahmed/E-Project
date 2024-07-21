@@ -66,20 +66,36 @@
             <li class="nav-item">
               <a class="nav-link" href="contact.php">Contact Us</a>
             </li>
+            <?php
+              session_start();            
+              if(isset($_SESSION['email'])) {
+                if($_SESSION['role'] == 'admin') {
+                  echo "
+                    <li class='nav-item'>
+                      <a class='nav-link' href='../dashboard/dashboard.php'>Dashboard</a>
+                    </li>
+                  ";
+                }
+              }
+            ?>
           </ul>
+          
           <div class="user_option">
             <?php 
-            
-              session_start();
-              
               if(isset($_SESSION['email'])) {
+                $first_name = $_SESSION['first_name'];
                 echo "
-                  <a href='auth/logout_backend.php'>
-                    <i class='fa fa-user' aria-hidden='true'></i>
-                    <span>
-                      Logout
-                    </span>
-                  </a>
+                  <div class='dropdown show'>
+                    <a class='dropdown-toggle' style='font-weight: 500; cursor: pointer;' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                      $first_name
+                    </a>
+
+                    <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
+                      <a class='dropdown-item' href='account-info.php'>My Profile</a>
+                      <div class='dropdown-divider'></div>
+                      <a class='dropdown-item' href='auth/logout_backend.php'>Logout</a>
+                    </div>
+                  </div>
                 ";
               } else {
                 echo "
@@ -93,10 +109,23 @@
               }
             
             ?>
-            <a href="">
+            <a href="cart.php">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <?php 
+                include('conn.php');
+
+                if(isset($_SESSION['email'])) {
+                  $id = $_SESSION['id'];
+                  $itemCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(id) AS count FROM cart WHERE userID=$id"));
+
+                  if($itemCount) {
+                    echo "($itemCount[count])";
+                  } 
+                }
+              ?>
             </a>
           </div>
         </div>
       </nav>
     </header>
+  </div>

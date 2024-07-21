@@ -26,6 +26,7 @@ $data = mysqli_fetch_assoc($res);
                 class="form-control"
                 id="firstNameInput"
                 name="first_name"
+                required
                 value="<?php echo $data['first_name'] ?>"
               />
             </div>
@@ -38,6 +39,7 @@ $data = mysqli_fetch_assoc($res);
                 class="form-control"
                 id="lastNameInput"
                 name="last_name"
+                required
                 value="<?php echo $data['last_name'] ?>"
               />
             </div>
@@ -50,6 +52,8 @@ $data = mysqli_fetch_assoc($res);
                 class="form-control"
                 id="emailInput"
                 name="email"
+                required
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                 value="<?php echo $data['email'] ?>"
               />
             </div>

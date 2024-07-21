@@ -32,6 +32,16 @@ if(isset($_POST['register-submit'])) {
     return false;
   }
 
+  if(strlen($password) <= 8) {
+    echo "
+      <script>
+        alert('Password should be atleast 8 characters long!');
+        window.location.href = '../login.php';
+      </script>
+    ";
+    return false;
+  }
+
   if($password !== $cpassword) {
     echo "
       <script>

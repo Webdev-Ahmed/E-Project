@@ -3,8 +3,7 @@
 session_start();
 echo "
   <script>
-    alert('You are now logged out of account!');
-    window.location.href = '../index.php';
+    window.location.href = '../login.php';
   </script>
 ";
 session_unset();

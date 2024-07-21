@@ -18,49 +18,36 @@
     <div class="info_container ">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 col-lg-3">
+          <div class="col-md-6 col-lg-4">
             <h6>
               ABOUT US
             </h6>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,
+              Welcome to Giftos, your premier online destination for quality stationery essentials. Discover a curated collection of pens, notebooks, planners, and more, crafted to inspire creativity and organization in your everyday life.
             </p>
           </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="info_form ">
-              <h5>
-                Newsletter
-              </h5>
-              <form action="#">
-                <input type="email" placeholder="Enter your email">
-                <button>
-                  Subscribe
-                </button>
-              </form>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
+          <div class="col-md-6 col-lg-4">
             <h6>
               NEED HELP
             </h6>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,
+            We're here for you at Giftos! Whether you have a question about our products, need assistance with your order, our friendly customer support team is ready to help. Contact us anytime—we're dedicated to ensuring your shopping experience with Giftos is seamless and enjoyable.
             </p>
           </div>
-          <div class="col-md-6 col-lg-3">
+          <div class="col-md-6 col-lg-4">
             <h6>
               CONTACT US
             </h6>
             <div class="info_link-box">
-              <a href="">
+              <a href="javascript:void(0)">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span> Gb road 123 london Uk </span>
+                <span> Non existent road, Los santos </span>
               </a>
-              <a href="">
+              <a href="javascript:void(0)">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>+01 12345678901</span>
+                <span>+00 12345678901</span>
               </a>
-              <a href="">
+              <a href="javascript:void(0)">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span> demo@gmail.com</span>
               </a>

@@ -4,15 +4,17 @@ include("../conn.php");
 session_start();
 
 if(isset($_POST['update-account-submit'])) {
+  $id = $_SESSION['id'];
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];
   $email = $_POST['email'];
-  $id = $_SESSION['id'];
+
+  echo $first_name, $last_name, $email;
 
   if(empty($first_name) || empty($last_name) || empty($email)) {
     echo "
       <script>
-        alert('All fields should be filled!');
+        alert('All fiels should be filled');
         window.location.href = '../edit-account.php';
       </script>
     ";
@@ -25,7 +27,7 @@ if(isset($_POST['update-account-submit'])) {
   if(!$res) {
     echo "
       <script>
-        alert('Something went wrong: Could not update the info!');
+        alert('Something went wrong: Can not update your account info');
         window.location.href = '../edit-account.php';
       </script>
     ";
@@ -37,8 +39,9 @@ if(isset($_POST['update-account-submit'])) {
   $_SESSION['email'] = $email;
   echo "
     <script>
-      alert('The info has been updated');
+      alert('Account info has been updated');
       window.location.href = '../account-info.php';
     </script>
   ";
+
 }

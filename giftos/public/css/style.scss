@@ -3,9 +3,8 @@ $black: #000000;
 $primary1: #f89cab;
 $btnColor: #db4f66;
 
-
 // font-family: 'Poppins', sans-serif;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 // font awesome
 @import url("font-awesome.min.css");
 
@@ -13,18 +12,14 @@ $btnColor: #db4f66;
   font-family: "poppins", sans-serif;
 }
 
-@mixin hero_btn($col1,
-  $col2,
-  $pad1,
-  $pad2,
-  $bRadius) {
+@mixin hero_btn($col1, $col2, $pad1, $pad2, $bRadius) {
   display: inline-block;
   padding: $pad1 $pad2;
   background-color: $col1;
   color: $col2;
   border: 1px solid $col1;
   border-radius: $bRadius;
-  transition: all .3s;
+  transition: all 0.3s;
 
   &:hover {
     background-color: transparent;
@@ -88,18 +83,14 @@ body {
   }
 }
 
-
 /*header section*/
 .hero_area {
   padding: 0 45px;
 }
 
-
 .hero_area.sub_pages {
   height: auto;
 }
-
-
 
 #navbarSupportedContent {
   width: 100%;
@@ -111,11 +102,10 @@ body {
   &.innerpage_navbar {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 3px 0 rgba($color: #000000, $alpha: .25);
+    box-shadow: 0 0 3px 0 rgba($color: #000000, $alpha: 0.25);
 
     .nav-item.active {
       .nav-link {
-
         background-color: #f4f5f6;
       }
     }
@@ -129,12 +119,10 @@ body {
       text-transform: uppercase;
       border-radius: 5px;
     }
-
   }
 
   .nav-item.active {
     .nav-link {
-
       background-color: $white;
     }
   }
@@ -176,8 +164,6 @@ a:focus {
   border: none;
 }
 
-
-
 .custom_nav-container {
   z-index: 99999;
   padding: 0;
@@ -197,7 +183,7 @@ a:focus {
   padding: 0;
   width: 37px;
   height: 42px;
-  transition: all .3s;
+  transition: all 0.3s;
 
   span {
     display: block;
@@ -208,7 +194,7 @@ a:focus {
     transition: all 0.3s;
     position: relative;
     border-radius: 5px;
-    transition: all .3s;
+    transition: all 0.3s;
 
     &::before,
     &::after {
@@ -220,7 +206,7 @@ a:focus {
       background-color: $black;
       top: -10px;
       border-radius: 5px;
-      transition: all .3s;
+      transition: all 0.3s;
     }
 
     &::after {
@@ -240,9 +226,7 @@ a:focus {
         top: 0;
       }
     }
-
   }
-
 }
 
 .user_option {
@@ -264,7 +248,6 @@ a:focus {
 
 // slider section
 .slider_section {
-
   .slider_container {
     color: #fefefe;
     background-color: $black;
@@ -303,8 +286,6 @@ a:focus {
       text-transform: uppercase;
     }
   }
-
-
 
   .carousel_btn-box {
     display: flex;
@@ -448,11 +429,11 @@ a:focus {
       }
 
       .btn1 {
-        @include hero_btn(#109dbd, $white, 10px, 0, 0)
+        @include hero_btn(#109dbd, $white, 10px, 0, 0);
       }
 
       .btn2 {
-        @include hero_btn($white, $black, 10px, 0, 0)
+        @include hero_btn($white, $black, 10px, 0, 0);
       }
     }
   }
@@ -483,7 +464,6 @@ a:focus {
 }
 
 //end why section
-
 
 // gift section
 
@@ -528,11 +508,11 @@ a:focus {
       }
 
       .btn1 {
-        @include hero_btn($white, $black, 10px, 0, 0)
+        @include hero_btn($white, $black, 10px, 0, 0);
       }
 
       .btn2 {
-        @include hero_btn(#9242dd, $white, 10px, 0, 0)
+        @include hero_btn(#9242dd, $white, 10px, 0, 0);
       }
     }
   }
@@ -540,15 +520,12 @@ a:focus {
 
 // end gift section
 
-
 // contact section
 .contact_section {
   position: relative;
 
-
   .container-bg {
-    box-shadow: 0 0 25px 0 rgba($color: #000000, $alpha: .1);
-
+    box-shadow: 0 0 25px 0 rgba($color: #000000, $alpha: 0.1);
   }
 
   .heading_container {
@@ -574,7 +551,6 @@ a:focus {
     outline: none;
     color: #101010;
 
-
     &::placeholder {
       color: #131313;
     }
@@ -589,6 +565,10 @@ a:focus {
     display: block;
     color: #fff;
     margin: 35px auto 0 auto;
+  }
+
+  a {
+    @include hero_btn($btnColor, $white, 12px, 45px, 0);
   }
 
   .map_container {
@@ -612,7 +592,7 @@ a:focus {
 
   .box {
     margin: 15px 45px;
-    box-shadow: 0 0 5px 0 rgba($color: #000000, $alpha: .25);
+    box-shadow: 0 0 5px 0 rgba($color: #000000, $alpha: 0.25);
     padding: 25px;
 
     .client_info {
@@ -662,14 +642,9 @@ a:focus {
   .carousel-control-next {
     right: 0;
   }
-
-
-
 }
 
 // end client section
-
-
 
 /* info section */
 .info_section {
@@ -714,17 +689,15 @@ a:focus {
         text-transform: uppercase;
       }
     }
-
   }
 
-  .row>div {
+  .row > div {
     margin-top: 25px;
   }
 
   a {
     text-transform: none;
   }
-
 
   h6 {
     font-weight: bold;
@@ -733,19 +706,15 @@ a:focus {
     margin-bottom: 25px;
   }
 
-
   p {
     color: #cbc9c9;
   }
-
-
 
   .info_link-box {
     a {
       display: flex;
       align-items: center;
       margin: 15px 0;
-
 
       &:hover {
         color: $white;
@@ -768,12 +737,9 @@ a:focus {
       }
     }
   }
-
-
 }
 
 /* end info section */
-
 
 /* footer section*/
 

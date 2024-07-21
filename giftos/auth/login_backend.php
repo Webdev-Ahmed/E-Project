@@ -52,6 +52,7 @@ if(isset($_POST['login-submit'])) {
   } 
 
   session_start();
+  $_SESSION['id'] = $user_data['id'];
   $_SESSION['first_name'] = $user_data['first_name'];
   $_SESSION['last_name'] = $user_data['last_name'];
   $_SESSION['email'] = $user_data['email'];

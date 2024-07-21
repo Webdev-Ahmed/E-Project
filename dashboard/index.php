@@ -58,6 +58,7 @@ if(isset($_SESSION['email'])) {
                       <input
                         type="email"
                         name="email"
+                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                         class="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
@@ -70,6 +71,7 @@ if(isset($_SESSION['email'])) {
                       <input
                         type="password"
                         name="password"
+                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                         class="form-control"
                         id="exampleInputPassword1"
                       />

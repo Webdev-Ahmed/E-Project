@@ -1,7 +1,6 @@
 <?php
 
   include("header.php");
-  include("auth/session_check.php");
 
 ?>
 
@@ -25,16 +24,16 @@
         <div class="col-md-6 col-lg-5 px-0">
           <form action="#">
             <div>
-              <input type="text" placeholder="Name" />
+              <input required type="text" placeholder="Name" />
             </div>
             <div>
-              <input type="email" placeholder="Email" />
+              <input required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" type="email" placeholder="Email" />
             </div>
             <div>
-              <input type="text" placeholder="Phone" />
+              <input required pattern="^0\d{2}-\d{7}$" type="text" placeholder="Phone" />
             </div>
             <div>
-              <input type="text" class="message-box" placeholder="Message" />
+              <input required type="text" class="message-box" placeholder="Message" />
             </div>
             <div class="d-flex ">
               <button>
